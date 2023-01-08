@@ -1,39 +1,23 @@
-var $item = $('.carousel-item');
-var $wHeight = $(window).height();
+$(document).ready(function(){
+  $(window).scroll(function(){
+      var positiontop=$(document).scrollTop();
+      console.log(positiontop);
 
-$item.height($wHeight); 
-$item.addClass('full-screen');
+      if((positiontop>180) && (positiontop<528)){
+          $('#img-one').addClass('animate__animated animate__bounceInLeft');
+          $('#img-two').addClass('animate__animated animate__bounceInLeft');
+          $('#img-three').addClass('animate__animated animate__bounceInLeft');
+      }
 
-var $numberofSlides = $('.carousel-item').length;
-var $currentSlide = Math.floor((Math.random() * $numberofSlides));
+      if((positiontop>432) && (positiontop<600)){
+          $('#textanimate').addClass('animate__animated animate__slideInUp');
+          
+      }
 
-$('.carousel-indicators li').each(function(){
-  var $slideValue = $(this).attr('data-slide-to');
-  if($currentSlide == $slideValue) {
-    $(this).addClass('active');
-    $item.eq($slideValue).addClass('active');
-  } else {
-    $(this).removeClass('active');
-    $item.eq($slideValue).removeClass('active');
-  }
-});
-
-$('.carousel img').each(function() {
-  var $src = $(this).attr('src');
-  var $color = $(this).attr('data-color');
-  $(this).parent().css({
-    'background-image' : 'url(' + $src + ')',
-    'background-color' : $color
+      if((positiontop>585) && (positiontop<620)){
+          $('#img-two-one').addClass('animate__animated animate__flipInY');
+          $('#img-two-two').addClass('animate__animated animate__jackInTheBox');
+          $('#img-two-three').addClass('animate__animated animate__flipInY');
+      }
   });
-  $(this).remove();
-});
-
-$(window).on('resize', function (){
-  $wHeight = $(window).height();
-  $item.height($wHeight);
-});
-
-$('.carousel').carousel({
-  interval: 6000,
-  pause: "false"
 });
